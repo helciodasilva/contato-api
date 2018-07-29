@@ -1,5 +1,7 @@
 package br.com.helciodasilva.contatoapi.domain.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,12 +19,14 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Entity
 @Table(name = "CONTATO")
 @Data
-public class Contato {
+public class Contato implements Serializable{
 
 	@Id
 	@SequenceGenerator(name = "seqContato", sequenceName = "SEQ_CONTATO", allocationSize = 1)
@@ -38,9 +42,10 @@ public class Contato {
 	@NotBlank
 	@Size(max = 50)
 	@Basic(optional = false)
-	@Column(name = "DESCRICAO")
+	@Column(name = "DESCRICAO", unique = true)
 	private String descricao;
 
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "ID_FUNCIONARIO", referencedColumnName = "ID")
 	private Funcionario funcionario;

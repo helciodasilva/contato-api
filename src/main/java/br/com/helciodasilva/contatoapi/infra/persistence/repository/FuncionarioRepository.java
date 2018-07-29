@@ -1,11 +1,13 @@
 package br.com.helciodasilva.contatoapi.infra.persistence.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import br.com.helciodasilva.contatoapi.domain.model.Funcionario;
 
-@RepositoryRestResource(collectionResourceRel = "funcionario", path = "funcionario")
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
+
+	List<Funcionario> findByNomeIgnoreCaseContaining(String nome);
 
 }

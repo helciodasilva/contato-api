@@ -1,5 +1,7 @@
 package br.com.helciodasilva.contatoapi.domain.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +18,7 @@ import lombok.Data;
 @Entity
 @Table(name = "FUNCIONARIO")
 @Data
-public class Funcionario {
+public class Funcionario implements Serializable {
 
 	@Id
 	@SequenceGenerator(name = "seqFuncionario", sequenceName = "SEQ_FUNCIONARIO", allocationSize = 1)

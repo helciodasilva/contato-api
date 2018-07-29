@@ -6,7 +6,7 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="DESCRICAO" type="VARCHAR(50)">
-                <constraints nullable="false"/>
+                <constraints unique="true" uniqueConstraintName="CONTATO_DESCRICAO_UK"/>
             </column>
             <column name="TIPO_CONTATO" type="INT">
                 <constraints nullable="false"/>
